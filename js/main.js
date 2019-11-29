@@ -42,9 +42,14 @@
       clearTimeout(timeoutId);
       timerLabel.textContent = '0.00';
       setTimeout(() => {
-        alert('Game Over');
+        showResult();
       }, 100);
     }
+  }
+
+  function showResult() {
+    const accuracy = score + miss === 0 ? 0 : score / (score + miss) * 100;
+    alert(`${score} letters, ${miss} misses, ${accuracy.toFixed(2)}% accuracy!`);
   }
 
   window.addEventListener('click', e => {
@@ -62,7 +67,7 @@
     if (isPlaying !== true) {
       return;
     }
-    
+
     if (e.key === word[loc]) {
       loc++;
       if (loc === word.length) {
